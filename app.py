@@ -8,7 +8,7 @@ with conn.session as session:
                                                        alamat_pengirim varchar, berat varchar, kode_pos varchar, nomor_resi varchar, tanggal date);')
     session.execute(query)
 
-st.header('tes 2')
+st.header('DATA PAKET SHOPEE')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
@@ -43,7 +43,7 @@ if page == "Edit Data":
                 alamat_pengirim_baru = st.text_input("alamat_pengirim", alamat_pengirim_lama)
                 berat_baru = st.text_input("berat", berat_lama)
                 kode_pos_baru = st.text_input("kode_pos", kode_pos_lama)
-                nomor_resi_baru = st.text_input("nomor_resi", waktu_lama)
+                nomor_resi_baru = st.text_input("nomor_resi", nomor_resi_lama)
                 tanggal_baru = st.date_input("tanggal", tanggal_lama)
                 
                 col1, col2 = st.columns([1, 6])
@@ -53,7 +53,7 @@ if page == "Edit Data":
                         with conn.session as session:
                             query = text('UPDATE pesanan \
                                           SET nama_penerima=:1, nama_pengirim=:2, alamat_penerima=:3, alamat_pengirim=:4, \
-                                          berat=:5, kode_pos=:6, nomor_res=:7, tanggal=:8 \
+                                          berat=:5, kode_pos=:6, nomor_resi=:7, tanggal=:8 \
                                           WHERE id=:9;')
                             session.execute(query, {'1':nama_penerima_baru, '2':nama_pengirim_baru, '3':alamat_penerima_baru, '4':alamat_pengirim_baru, 
                                                     '5':berat_baru, '6':kode_pos_baru, '7':nomor_resi_baru, '8':tanggal_baru, '9':id})
